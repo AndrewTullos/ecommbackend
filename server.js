@@ -1,18 +1,21 @@
 const express = require("express");
-// Import and require mysql2
+const routes = require("./routes");
 const mysql = require("mysql2");
 require("dotenv").config();
-// other requires and code
+
+const sequelize = require("./config/connection");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
 
 // Express middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
-// Create a movie
-// app.post("/api/new-movie", ({ body }, res) => {
+app.use(routes);
+
+// Create a route
+// app.post("/api/tag", ({ body }, res) => {
 // 	const sql = `INSERT INTO movies (movie_name)
 //    VALUES (?)`;
 // 	const params = [body.movie_name];

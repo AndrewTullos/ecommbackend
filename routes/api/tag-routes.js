@@ -21,7 +21,7 @@ router.get("/:id", async (req, res) => {
 	try {
 		const findSingleTag = await Tag.findByPk(req.params.id, {
 			// be sure to include its associated Product data
-			include: [{ model: Tag, through: ProductTag, as: "tag_id" }],
+			include: [{ model: Product }],
 		});
 
 		if (!findSingleTag) {
